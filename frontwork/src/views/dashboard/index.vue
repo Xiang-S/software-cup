@@ -2,7 +2,7 @@
   <div class="container">
     <div ref="area" class="bar"></div>
     <div ref="time" class="line"></div>
-    <Map></Map>
+    <Map style="width: 100%;"></Map>
   </div>
 
 </template>
@@ -19,7 +19,6 @@ export default {
   data() {
     return {
       list: [],
-
     }
   },
   computed: {
@@ -142,19 +141,18 @@ export default {
 <style lang="scss" scoped>
 .container {
   width: 90%;
-  height: calc(100vh - 50px - 20vh);
+  min-height: calc(100vh - 50px);
   margin: 10vh auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   .bar {
     width: 50%;
-    height: 100%;
+    height: 600px;
   }
 
   .line {
     width: 50%;
-    height: 100%;
+    height: 600px;
   }
 }
 

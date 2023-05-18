@@ -4,7 +4,7 @@
              label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">{{title}}</h3>
       </div>
 
       <el-form-item prop="username">
@@ -42,7 +42,7 @@
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;"
+      <el-button :loading="loading" style="width:100%;margin-bottom:30px;" round
                  @click.native.prevent="handleLogin">Login
       </el-button>
 
@@ -116,6 +116,11 @@ export default {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({path: this.redirect || '/'})
+            this.$notify({
+              title: '登录成功',
+              type: 'success',
+              duration: 2000,
+            });
             this.loading = false
           }).catch(() => {
             this.loading = false
@@ -125,6 +130,12 @@ export default {
           return false
         }
       })
+    },
+
+  },
+  computed:{
+    title() {
+      return this.$store.state.settings.title
     }
   }
 }
@@ -150,6 +161,7 @@ $cursor: black;
     display: inline-block;
     height: 47px;
     width: 85%;
+
     input {
       background: #fff;
       border: 0px;
@@ -172,7 +184,8 @@ $cursor: black;
     //background: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     color: black;
-    .el-form-item__content{
+
+    .el-form-item__content {
       background-color: #fff;
     }
   }
@@ -198,7 +211,7 @@ $cursor: black;
 
   .tips {
     font-size: 14px;
-    color: rgba(0,0,0,.85);
+    color: rgba(0, 0, 0, .85);
     margin-bottom: 10px;
 
     span {
@@ -210,7 +223,7 @@ $cursor: black;
 
   .svg-container {
     padding: 6px 5px 6px 15px;
-    color: rgba(0,0,0,.85);
+    color: rgba(0, 0, 0, .85);
     vertical-align: middle;
     width: 30px;
     display: inline-block;
@@ -221,7 +234,7 @@ $cursor: black;
 
     .title {
       font-size: 26px;
-      color: rgba(0,0,0,.85);
+      color: rgba(0, 0, 0, .85);
       margin: 0px auto 40px auto;
       text-align: center;
       font-weight: bold;
@@ -233,7 +246,7 @@ $cursor: black;
     right: 10px;
     top: 7px;
     font-size: 16px;
-    color: rgba(0,0,0,.85);
+    color: rgba(0, 0, 0, .85);
     cursor: pointer;
     user-select: none;
   }

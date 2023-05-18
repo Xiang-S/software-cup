@@ -51,6 +51,7 @@ export default {
   height: 1em;
   vertical-align: -0.15em;
   fill: currentColor;
+  display: inline;
   overflow: hidden;
 }
 

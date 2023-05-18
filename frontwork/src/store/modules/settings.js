@@ -1,8 +1,9 @@
 import defaultSettings from '@/settings'
 
-const { showSettings, fixedHeader, sidebarLogo } = defaultSettings
+const { title ,showSettings, fixedHeader, sidebarLogo } = defaultSettings
 
 const state = {
+  title: title,
   showSettings: showSettings,
   fixedHeader: fixedHeader,
   sidebarLogo: sidebarLogo

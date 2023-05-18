@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="my-4">
-      <el-button type="primary">添加用户</el-button>
+      <el-button type="primary" @click="addUser">添加用户</el-button>
     </div>
     <el-table
       :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
@@ -51,6 +51,26 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-dialog :title="formType==='add'?'添加用户':'编辑用户'" :visible.sync="dialogFormVisible">
+      <el-form :model="form" :rules="rules" ref="form">
+        <el-form-item label="用户名" :label-width="formLabelWidth" prop="name">
+          <el-input v-model="form.name" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="昵称" :label-width="formLabelWidth" prop="nickName">
+          <el-input v-model="form.nickName" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="电话" :label-width="formLabelWidth" prop="tel">
+          <el-input v-model="form.tel" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="地址" :label-width="formLabelWidth" prop="addr">
+          <el-input v-model="form.addr" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submit">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -90,6 +110,30 @@ export default {
         address: 'No. 189, Grove St, Los Angeles'
       }],
       search: '',
+      form: {
+        name: '',
+        nickName: '',
+        tel: '',
+        addr: '',
+      },
+      rules: {
+        name: [
+          { required: true, message: '请输入用户名', trigger: 'blur' }
+        ],
+        nickName: [
+          { required: true, message: '请输入昵称', trigger: 'blur' }
+        ],
+        tel: [
+          { required: true, message: '请输入电话', trigger: 'blur' },
+          { pattern: /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/, message: '请输入正确的电话号码',trigger: 'blur'}
+        ],
+        addr: [
+          { required: true, message: '请输入地址', trigger: 'blur' }
+        ],
+      },
+      dialogFormVisible: false,
+      formLabelWidth: '120px',
+      formType:''
     }
   },
   created() {
@@ -104,10 +148,37 @@ export default {
       })
     },
     handleEdit(index, row) {
+      this.formType = 'edit'
+      this.dialogFormVisible = true
+
       console.log(index, row);
     },
     handleDelete(index, row) {
       console.log(index, row);
+    },
+    addUser(){
+      this.formType = 'add'
+      this.dialogFormVisible = true
+    },
+    cancel(){
+      this.$refs['form'].resetFields();
+      this.dialogFormVisible = false
+    },
+    submit(){
+      if(this.formType === 'add'){
+        this.$refs['form'].validate((valid) => {
+          if (valid) {
+            alert('submit!');
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+        return
+      }
+
+      this.$refs['form'].resetFields();
+      this.dialogFormVisible = false
     }
   }
 }

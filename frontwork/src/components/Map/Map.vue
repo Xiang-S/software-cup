@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="map" :style="{ width: `${width}px`, height: `${height}px` }"></div>
+    <div id="map"></div>
   </div>
 </template>
 
@@ -9,8 +9,6 @@ import axios from 'axios'
 import * as echarts from 'echarts'
 import {MAPDATA} from "@/components/Map/mapData";
 
-const preCode = [['100000', '全国']]
-
 export default {
   data() {
     return {
@@ -18,14 +16,7 @@ export default {
     }
   },
   props: {
-    width: {
-      type: Number,
-      default: 1200
-    },
-    height: {
-      type: Number,
-      default: 700
-    }
+
   },
   mounted() {
     let myChart = echarts.init(document.getElementById("map"));
@@ -99,8 +90,7 @@ export default {
           min: 0,
           // max: max,
           inRange: {
-            color: ['#FFEC8B', '#98FB98'
-            ]
+            color: ['#FFEC8B', '#98FB98']
           },
           splitNumber: 0,
           bottom: 100,
@@ -117,7 +107,6 @@ export default {
             fontStyle: 'normal',
             fontWeight: 'normal',
             color: '#fff'
-
           },
           map: name,
           selectedMode: false, //是否允许选中多个区域
@@ -135,7 +124,9 @@ export default {
             min: 2,
             max: 80
           },
-          data: []
+          data: [
+            {name: '上海市', value: 251},
+          ]
         }],
       };
       option && myChart.setOption(option);
@@ -264,8 +255,8 @@ export default {
 </script>
 
 <style scoped>
-#map {
-  width: 600px;
-  height: 600px;
+#map{
+  width: 100%;
+  height: 900px;
 }
 </style>

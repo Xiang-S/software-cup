@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       title: '植物表型特征识别系统',
-      logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
+      logo: '../../../assets/logo/planting.png'
     }
   }
 }
