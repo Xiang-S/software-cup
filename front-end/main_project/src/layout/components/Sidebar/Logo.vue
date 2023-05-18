@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       title: '植物表型特征识别系统',
-      logo: '../../../assets/logo/planting.png'
+      logo: '/planting.png'
     }
   }
 }

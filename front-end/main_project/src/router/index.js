@@ -87,7 +87,7 @@ export const constantRoutes = [
         meta: {
           title: '图片管理',
           icon: 'el-icon-picture'
-        },
+        }
       }
     ]
   },
@@ -113,7 +113,6 @@ export const constantRoutes = [
   {
     path: '/publish',
     component: Layout,
-    redirect:'/publish',
     children: [
       {
         path: 'index',

@@ -1,10 +1,17 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on"
-             label-position="left">
+    <el-form
+      ref="loginForm"
+      :model="loginForm"
+      :rules="loginRules"
+      class="login-form"
+      auto-complete="on"
+      label-position="left"
+    >
 
       <div class="title-container">
-        <h3 class="title">{{title}}</h3>
+        <img src="/planting.png">
+        <h3 class="title">{{ title }}</h3>
       </div>
 
       <el-form-item prop="username">
@@ -42,8 +49,12 @@
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" style="width:100%;margin-bottom:30px;" round
-                 @click.native.prevent="handleLogin">Login
+      <el-button
+        :loading="loading"
+        style="width:100%;margin-bottom:30px;"
+        round
+        @click.native.prevent="handleLogin"
+      >Login
       </el-button>
 
       <div class="tips">
@@ -56,7 +67,7 @@
 </template>
 
 <script>
-import {validUsername} from '@/utils/validate'
+import { validUsername } from '@/utils/validate'
 
 export default {
   name: 'Login',
@@ -81,8 +92,8 @@ export default {
         password: '111111'
       },
       loginRules: {
-        username: [{required: true, trigger: 'blur', validator: validateUsername}],
-        password: [{required: true, trigger: 'blur', validator: validatePassword}]
+        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       loading: false,
       passwordType: 'password',
@@ -93,7 +104,7 @@ export default {
   },
   watch: {
     $route: {
-      handler: function (route) {
+      handler: function(route) {
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
@@ -115,12 +126,12 @@ export default {
         if (valid) {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({path: this.redirect || '/'})
+            this.$router.push({ path: this.redirect || '/' })
             this.$notify({
               title: '登录成功',
               type: 'success',
-              duration: 2000,
-            });
+              duration: 2000
+            })
             this.loading = false
           }).catch(() => {
             this.loading = false
@@ -130,10 +141,10 @@ export default {
           return false
         }
       })
-    },
+    }
 
   },
-  computed:{
+  computed: {
     title() {
       return this.$store.state.settings.title
     }
@@ -230,14 +241,23 @@ $cursor: black;
   }
 
   .title-container {
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
     position: relative;
-
+    img{
+      height: 44px;
+      margin-right: 16px;
+      vertical-align: top;
+    }
     .title {
+      position: relative;
+      top: 2px;
+      color: rgba(0,0,0,.85);
+      font-weight: 600;
       font-size: 26px;
-      color: rgba(0, 0, 0, .85);
-      margin: 0px auto 40px auto;
-      text-align: center;
-      font-weight: bold;
+      font-family: Avenir,"Helvetica Neue",Arial,Helvetica,sans-serif;
     }
   }
 
