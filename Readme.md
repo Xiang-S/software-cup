@@ -34,6 +34,5 @@ C:.
 └───front-end
     │   Readme.md
     │
-    ├───main
-    └───reference_project
+    ├───main_project
 ```
