@@ -40,28 +40,35 @@
 		"list": [
 			{
 				"pagePath": "pages/index/index",
-				"iconPath": "static/Media_Player_dark.png",
+				"iconPath": "static/index.svg",
+				"selectedIconPath":"static/index_clicked.svg",
 				"text": "首页"
 			},
 			{
 				"pagePath": "pages/common/result_manage",
-				"iconPath": "static/Media_Player_dark.png",
+				"iconPath": "static/result_manage.svg",
+				"selectedIconPath":"static/result_manage_clicked.svg",
 				"text": "归档"
 			},
 			{
-				"iconPath": "static/Media_Player_dark.png",
+				"iconPath": "static/scan.svg",
+				"selectedIconPath":"static/scan_clicked.svg",
 				"pagePath": "pages/common/scan",
 				"text": "扫描"
 			},
 			{
-				"iconPath": "static/Media_Player_dark.png",
+				"iconPath": "static/woami.svg",
 				"pagePath": "pages/common/woami",
+				"selectedIconPath":"static/whoami_clicked.svg",
+				
 				"text": "队列"
 			},
 
 			{
-				"iconPath": "static/Media_Player_dark.png",
+				"iconPath": "static/setting.svg",
 				"pagePath": "pages/common/setting",
+				"selectedIconPath":"static/setting_clicked.svg",
+
 				"text": "设置"
 			}
 
