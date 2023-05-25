@@ -16,7 +16,7 @@
 			return {
 				windowWidth:'',
 				windowHeight:'',
-				title: '暂时不知道放什么，暂时用作占位符\n 将来可能有其他放面的用处',
+				title: '暂时不知道放什么，暂时用作占位符\n 可能会用来显示百科功能\n 将来可能有其他放面的用处',
 			}
 		},
 		onLoad() {

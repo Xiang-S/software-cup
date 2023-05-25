@@ -14,7 +14,7 @@
 		<navigator class="buttons" url="../camera/watermark/watermark"><button type="primary">打开定制水印相机</button></navigator>
 		<view style="height: 80rpx;"></view>
 		
-		<view>拍摄结果预览图，见下方</view>
+		<view>拍摄结果预览</view>
 		<image  class="preview" :src="imagesrc" mode="aspectFit" style="width:710rpx:height:710rpx;margin: 20rpx;"></image>
 		
 		<canvas id="canvas-clipper" canvas-id="canvas-clipper" type="2d" :style="{width: canvasSiz.width+'px',height: canvasSiz.height+'px',position: 'absolute',left:'-500000px',top: '-500000px'}" />

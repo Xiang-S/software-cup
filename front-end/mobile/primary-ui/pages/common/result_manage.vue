@@ -72,6 +72,11 @@
 	  	<text class="title">{{message}}</text>
 	  </view>
     </div>
+
+	<view style="padding: 20px;">
+		<u-button type="primary" text="查询"></u-button>
+	</view>
+	
   </view>
 
 </template>

@@ -6,10 +6,20 @@
     @open="open"
   >
     <u-collapse-item
-      title="登录设置"
+      title="用户设置"
       name="login info"
     >
-      <text class="u-collapse-content">将来用于处理用户登录相关接口，包括个人信息</text>
+      <text class="u-collapse-content">将来用于处理用户登录相关接口，部分组件将来会通过条件渲染隐藏</text>
+    <div>
+      <!-- 个人门户 -->
+	    <u-button text="个人信息设置"></u-button>
+      <!-- 用户组 -->
+	   <u-button text="个人权限设置"></u-button>
+      <!-- 如果登录用户是狗管理的话，显示组成员的CRUD功能 -->	  
+      <u-button text="用户组成员管理"></u-button>
+      <u-button text="用户组管理"></u-button>
+    </div>
+
     </u-collapse-item>
     
     <u-collapse-item
@@ -17,6 +27,11 @@
       name="permission settings"
     >
       <text class="u-collapse-content">包含Android操作系统相关的权限设置</text>
+      <div>
+        <u-button text="检查读写权限"></u-button>
+        <u-button text="检查摄像头权限"></u-button>
+        <u-button text="检查定位权限"></u-button>
+      </div>
     </u-collapse-item>
 
     <u-collapse-item
@@ -24,6 +39,9 @@
       name="server"
     >
       <text class="u-collapse-content">包括杂七杂八的调试功能</text>
+      <u-button text="服务器地址"></u-button>
+      <u-button text="服务器负载状态"></u-button>
+      <u-button text="服务器健康状况测试"></u-button>
     </u-collapse-item>
 
     <u-collapse-item
@@ -40,7 +58,7 @@
 		
 		<view class="text">
 				<view style="padding: 20px;">
-					<u-button type="primary" text="退出登录"></u-button>
+					<u-button type="primary" text="登录"></u-button>
 					<u-button type="primary" :disabled="disabled" text="注销账户"></u-button>
 				</view>
 		</view>
