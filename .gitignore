@@ -15,4 +15,4 @@ tests/**/coverage/
 *.ntvs*
 *.njsproj
 *.sln
-front-end\mobile\primary-ui\unpackage\cache\wgt
+front-end.pngmobile/primary-ui/unpackage/cache
