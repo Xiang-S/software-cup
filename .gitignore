@@ -6,7 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 tests/**/coverage/
-
+front-end/mobile/primary-ui/unpackage/cache
 
 # Editor directories and files
 .idea
@@ -15,4 +15,3 @@ tests/**/coverage/
 *.ntvs*
 *.njsproj
 *.sln
-front-end.pngmobile/primary-ui/unpackage/cache
