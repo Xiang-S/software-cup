@@ -10,16 +10,31 @@
 
 
 <script>
+	var _this;
 	export default {
 		data() {
 			return {
+				windowWidth:'',
+				windowHeight:'',
 				title: '暂时不知道放什么，暂时用作占位符\n 将来可能有其他放面的用处',
 			}
 		},
 		onLoad() {
-
+		_this= this;
+		this.init();
 		},
 		methods: {
+			
+			//初始化
+			init(){
+				let _this = this;
+				uni.getSystemInfo({
+					success: function(res) {
+						_this.windowWidth = res.windowWidth;
+						_this.windowHeight = res.windowHeight;
+					}
+				});
+			},
 
 			changeIndicatorDots(e) {
 				this.indicatorDots = !this.indicatorDots
