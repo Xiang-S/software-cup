@@ -15,3 +15,4 @@ front-end/mobile/primary-ui/unpackage/cache
 *.ntvs*
 *.njsproj
 *.sln
+*.apk
