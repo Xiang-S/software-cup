@@ -9,7 +9,7 @@ from typing import Dict
 接收两个参数：payload表示需要加密的数据
 secret为服务器预设的密钥
 decode_token方法用于解密JWT
-接收两个参数：token表示需要解密的JWT字符串，secret同样为服务器预设的密钥。
+接收两个参数：token表示需要解密的JWT字符串，secret同样为服务器预设的密钥,此即私钥，十分重要。
 
 在测试方法中，我们定义了一个Payload字典用于测试加密和解密方法，
 使用encode_token方法生成JWT，然后使用decode_token方法解密JWT
