@@ -15,6 +15,12 @@ decode_token方法用于解密JWT
 使用encode_token方法生成JWT，然后使用decode_token方法解密JWT
 最后输出解密后的Payload数据
 注意，在实际使用时，需要将密钥进行保护，以免被黑客攻击和窃取。
+
+如果想要实现过期时间设置可以在token中加入过期时间，格式为UNIX时间戳
+然后在decode_token方法中判断当前时间是否超过创建时间加上过期时间
+(不建议用，因为JWT是不可变的，如果想要修改过期时间，只能重新生成一个JWT)
+能偷懒尽量偷懒
+
 '''
 # 定义加密方法
 def encode_token(payload: Dict, secret: str) -> str:
