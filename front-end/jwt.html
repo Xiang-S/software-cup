@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- jwt模板
+    用于web token加密解密的 -->
+    <script>
+        const jwt = require('jsonwebtoken');
+
+        // 定义加密方法
+        function encodeToken(payload, secret) {
+            return jwt.sign(payload, secret, { algorithm: 'HS256' });
+        }
+
+        // 定义解密方法
+        function decodeToken(token, secret) {
+            try {
+                return jwt.verify(token, secret);
+            } catch (err) {
+                throw new Error('Invalid token');
+            }
+        }
+
+        // 测试方法
+        const payload = { userId: 1234, exp: Math.floor(Date.now() / 1000) + 3600 };
+        const secret = 'my_secret_key';
+        const token = encodeToken(payload, secret);
+        console.log(token);
+        const decoded = decodeToken(token, secret);
+        console.log(decoded);
+    </script>
+</body>
+
+</html>
