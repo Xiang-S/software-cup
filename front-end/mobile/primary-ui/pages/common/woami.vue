@@ -9,8 +9,14 @@
 			<text class="title">{{ title }}</text>
 			<text class="title">{{ message }}</text>
 			<u-back-top :scroll-top="scrollTop"></u-back-top>
-	
-		</view>
+			
+		</view><image
+			src="https://img.moegirl.org.cn/common/b/be/%E5%8E%BB%E7%A0%81%E5%A4%B4%E6%95%B4%E7%82%B9%E8%96%AF%E6%9D%A1.webp"
+			mode="scaleToFill"
+		/>
+		<p>
+			
+		</p>
 		<view class="content">
 			<p>当前为第 1 页, 共 10页</p>
 		</view>

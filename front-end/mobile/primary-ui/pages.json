@@ -31,10 +31,41 @@
 			"style": {
 				"backgroundColor": "#F8F8F8"
 			}
+		},
+		{
+			"path": "pages/user/about",
+			"style": {
+				"backgroundColor": "#F8F8F8"
+			}
+		},
+		{
+			"path": "pages/user/permissions",
+			"style": {
+				"backgroundColor": "#F8F8F8"
+			}
+		},
+		{
+			"path": "pages/device/about",
+			"style": {
+				"backgroundColor": "#F8F8F8"
+			}
+		},
+		{
+			"path": "pages/woami/login_portal",
+			"style": {
+				"backgroundColor": "#F8F8F8"
+			}
+		},
+		{
+			"path": "pages/woami/whoami",
+			"style": {
+				"backgroundColor": "#F8F8F8"
+			}
 		}
+		
 	],
 	"tabBar": {		
-		"color": "#7a7e83",
+		"color": "#c0c4cc",
 		"selectedColor": "#65bbe8",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
