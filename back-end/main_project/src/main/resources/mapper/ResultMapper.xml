@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccit.springboot.mapper.ResultMapper">
+    <resultMap id="provinceMap" type="com.ccit.springboot.controller.dto.ResultDTO">
+        <result column="province" property="name"/>
+    </resultMap>
+    <resultMap id="chartMap" type="com.ccit.springboot.controller.dto.MapDTO">
+        <result column="province" property="name"/>
+        <result column="nums" property="value"/>
+    </resultMap>
+    <select id="selectAllProvince" resultMap="provinceMap">
+        SELECT DISTINCT p.province
+        FROM sys_result r
+                 LEFT JOIN category c ON r.category_id = c.id
+                 LEFT JOIN sys_province p ON r.province_id = p.id
+    </select>
+    <select id="selectNumByProvince" resultType="java.lang.Integer">
+        SELECT r.num, c.plant, p.province
+        FROM sys_result r
+                 LEFT JOIN category c ON r.category_id = c.id
+                 LEFT JOIN sys_province p ON r.province_id = p.id
+        WHERE p.province = #{province}
+    </select>
+    <select id="selectSumByProvince" resultMap="chartMap">
+        SELECT p.province, SUM(r.num) as nums
+        FROM sys_result r
+                 LEFT JOIN category c ON r.category_id = c.id
+                 LEFT JOIN sys_province p ON r.province_id = p.id
+        GROUP BY p.province
+    </select>
+
+
+</mapper>
