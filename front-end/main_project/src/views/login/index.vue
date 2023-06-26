@@ -9,13 +9,13 @@
       label-position="left"
     >
       <div class="title-container">
-        <img src="/planting.png" />
+        <img src="/planting.png"/>
         <h3 class="title">{{ title }}</h3>
       </div>
 
       <el-form-item prop="username">
         <span class="svg-container">
-          <svg-icon icon-class="user" />
+          <svg-icon icon-class="user"/>
         </span>
         <el-input
           ref="username"
@@ -30,7 +30,7 @@
 
       <el-form-item prop="password">
         <span class="svg-container">
-          <svg-icon icon-class="password" />
+          <svg-icon icon-class="password"/>
         </span>
         <el-input
           :key="passwordType"
@@ -55,7 +55,7 @@
         style="width: 100%; margin-bottom: 30px"
         round
         @click.native.prevent="handleLogin"
-        >Login
+      >Login
       </el-button>
 
       <div class="tips">
@@ -67,9 +67,10 @@
 </template>
 
 <script>
-import { setRoutes } from "@/router";
+import { setRoutes } from '@/router'
+
 export default {
-  name: "Login",
+  name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
       // if (!validUsername(value)) {
@@ -78,7 +79,7 @@ export default {
       //   callback();
       // }
       callback()
-    };
+    }
     const validatePassword = (rule, value, callback) => {
       // if (value.length < 5) {
       //   callback(new Error("The password can not be less than 6 digits"));
@@ -86,77 +87,78 @@ export default {
       //   callback();
       // }
       callback()
-    };
+    }
     return {
       loginForm: {
-        username: "admin",
-        password: "admin",
+        username: 'admin',
+        password: 'admin'
       },
       loginRules: {
         username: [
-          { required: true, trigger: "blur", validator: validateUsername },
+          { required: true, trigger: 'blur', validator: validateUsername }
         ],
         password: [
-          { required: true, trigger: "blur", validator: validatePassword },
-        ],
+          { required: true, trigger: 'blur', validator: validatePassword }
+        ]
       },
       loading: false,
-      passwordType: "password",
-      redirect: undefined,
-    };
+      passwordType: 'password',
+      redirect: undefined
+    }
   },
-  created() {},
+  created() {
+  },
   watch: {
     $route: {
-      handler: function (route) {
-        this.redirect = route.query && route.query.redirect;
+      handler: function(route) {
+        this.redirect = route.query && route.query.redirect
       },
-      immediate: true,
-    },
+      immediate: true
+    }
   },
   methods: {
     showPwd() {
-      if (this.passwordType === "password") {
-        this.passwordType = "";
+      if (this.passwordType === 'password') {
+        this.passwordType = ''
       } else {
-        this.passwordType = "password";
+        this.passwordType = 'password'
       }
       this.$nextTick(() => {
-        this.$refs.password.focus();
-      });
+        this.$refs.password.focus()
+      })
     },
     handleLogin() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
-          this.loading = true;
+          this.loading = true
           this.$store
-            .dispatch("user/login", this.loginForm)
+            .dispatch('user/login', this.loginForm)
             .then(() => {
-              setRoutes();
-              this.$router.push({ path: this.redirect || "/" });
+              setRoutes()
+              this.$router.push({ path: this.redirect || '/' })
               this.$notify({
-                title: "登录成功",
-                type: "success",
-                duration: 2000,
-              });
-              this.loading = false;
+                title: '登录成功',
+                type: 'success',
+                duration: 2000
+              })
+              this.loading = false
             })
             .catch(() => {
-              this.loading = false;
-            });
+              this.loading = false
+            })
         } else {
-          console.log("error submit!!");
-          return false;
+          console.log('error submit!!')
+          return false
         }
-      });
-    },
+      })
+    }
   },
   computed: {
     title() {
-      return this.$store.state.settings.title;
-    },
-  },
-};
+      return this.$store.state.settings.title
+    }
+  }
+}
 </script>
 
 <style lang="scss">
@@ -252,11 +254,13 @@ $cursor: black;
     justify-content: center;
     align-items: center;
     position: relative;
+
     img {
       height: 44px;
       margin-right: 16px;
       vertical-align: top;
     }
+
     .title {
       position: relative;
       top: 2px;

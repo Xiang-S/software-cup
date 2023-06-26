@@ -7,32 +7,32 @@
       <el-table-column
         fixed
         prop="date"
-        label="Date"
+        label="识别时间"
         width="150">
       </el-table-column>
       <el-table-column
-        prop="name"
-        label="Name"
+        prop="username"
+        label="用户名"
         width="120">
       </el-table-column>
       <el-table-column
         prop="state"
-        label="State"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="city"
-        label="City"
+        label="识别地"
         width="120">
       </el-table-column>
       <el-table-column
         prop="address"
-        label="Address"
+        label="用户住址"
         width="300">
       </el-table-column>
       <el-table-column
         prop="zip"
-        label="Zip"
+        label="图片"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="zip"
+        label="识别结果"
         width="120">
       </el-table-column>
       <el-table-column

@@ -6,4 +6,9 @@
     <select id="selectPlants" resultType="string">
         SELECT plant FROM `category`
     </select>
+    <select id="selectByPlant" resultType="java.lang.Integer">
+        select id from category
+        where plant = #{plant}
+    </select>
+
 </mapper>

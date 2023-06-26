@@ -10,6 +10,7 @@ import com.ccit.springboot.common.Constants;
 import com.ccit.springboot.common.Result;
 import com.ccit.springboot.entity.Files;
 import com.ccit.springboot.mapper.FileMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -27,6 +28,7 @@ import java.util.List;
 /**
  * 文件上传相关接口
  */
+@Slf4j
 @RestController
 @RequestMapping("/file")
 public class FileController {
@@ -77,7 +79,7 @@ public class FileController {
             // 上传文件到磁盘
             file.transferTo(uploadFile);
             // 数据库若不存在重复文件，则不删除刚才上传的文件
-            url = "http://" + serverIp + ":9090/file/" + fileUUID;
+            url =  "file/" + fileUUID;
         }
 
 
@@ -89,19 +91,6 @@ public class FileController {
         saveFile.setUrl(url);
         saveFile.setMd5(md5);
         fileMapper.insert(saveFile);
-
-        // 从redis取出数据，操作完，再设置（不用查询数据库）
-//        String json = stringRedisTemplate.opsForValue().get(Constants.FILES_KEY);
-//        List<Files> files1 = JSONUtil.toBean(json, new TypeReference<List<Files>>() {
-//        }, true);
-//        files1.add(saveFile);
-//        setCache(Constants.FILES_KEY, JSONUtil.toJsonStr(files1));
-
-
-        // 从数据库查出数据
-//        List<Files> files = fileMapper.selectList(null);
-//        // 设置最新的缓存
-//        setCache(Constants.FILES_KEY, JSONUtil.toJsonStr(files));
 
         // 最简单的方式：直接清空缓存
         flushRedis(Constants.FILES_KEY);

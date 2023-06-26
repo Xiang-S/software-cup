@@ -7,143 +7,144 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import Map from "@/components/Map/Map.vue";
-import { getData } from "@/api/dashboard";
+import { mapGetters } from 'vuex'
+import Map from '@/components/Map/Map.vue'
+import { getData } from '@/api/dashboard'
+
 export default {
-  name: "Dashboard",
+  name: 'Dashboard',
   components: {
-    Map,
+    Map
   },
   data() {
     return {
-      list: [],
-    };
+      list: []
+    }
   },
   computed: {
-    ...mapGetters(["name"]),
+    ...mapGetters(['name'])
   },
   mounted() {
-    this.initBar();
-    this.initLine();
+    this.initBar()
+    this.initLine()
   },
   methods: {
     initBar() {
-      let bar = this.$echarts.init(this.$refs.area);
-      bar.showLoading();
+      const bar = this.$echarts.init(this.$refs.area)
+      bar.showLoading()
       bar.setOption({
         title: {
-          text: "植物种类地区分布统计",
+          text: '植物种类地区分布统计'
         },
-        backgroundColor: "",
+        backgroundColor: '',
         tooltip: {},
         legend: {
-          left: "60%",
+          left: '60%'
         },
         grid: {},
         xAxis: {
-          type: "category",
-          data: [],
+          type: 'category',
+          data: []
         },
         yAxis: {
-          type: "value",
+          type: 'value'
         },
         series: [
           {
-            name: "",
-            type: "bar",
-            data: [],
+            name: '',
+            type: 'bar',
+            data: []
           },
           {
-            name: "",
-            type: "bar",
-            data: [],
+            name: '',
+            type: 'bar',
+            data: []
           },
           {
-            name: "",
-            type: "bar",
-            data: [],
-          },
-        ],
-      });
+            name: '',
+            type: 'bar',
+            data: []
+          }
+        ]
+      })
       getData().then((res) => {
-        const {data}  = res
+        const { data } = res
         bar.setOption({
           xAxis: {
-            data: data.x,
+            data: data.x
           },
-          series: data.y,
-        });
-        bar.hideLoading();
-      });
-      
+          series: data.y
+        })
+        bar.hideLoading()
+      })
+
     },
     initLine() {
-      let base = +new Date(2000, 9, 3);
-      let oneDay = 24 * 3600 * 1000;
-      let data = [[base, Math.random() * 300]];
+      let base = +new Date(2000, 9, 3)
+      let oneDay = 24 * 3600 * 1000
+      let data = [[base, Math.random() * 300]]
       for (let i = 1; i < 20000; i++) {
-        let now = new Date((base += oneDay));
+        let now = new Date((base += oneDay))
         data.push([
           +now,
-          Math.round((Math.random() - 0.5) * 20 + data[i - 1][1]),
-        ]);
+          Math.round((Math.random() - 0.5) * 20 + data[i - 1][1])
+        ])
       }
       let option = {
         tooltip: {
-          trigger: "axis",
-          position: function (pt) {
-            return [pt[0], "10%"];
-          },
+          trigger: 'axis',
+          position: function(pt) {
+            return [pt[0], '10%']
+          }
         },
         title: {
-          left: "center",
-          text: "植物病害出现时间统计",
+          left: 'center',
+          text: '植物病害出现时间统计'
         },
         toolbox: {
           feature: {
             dataZoom: {
-              yAxisIndex: "none",
+              yAxisIndex: 'none'
             },
             restore: {},
-            saveAsImage: {},
-          },
+            saveAsImage: {}
+          }
         },
         xAxis: {
-          type: "time",
-          boundaryGap: false,
+          type: 'time',
+          boundaryGap: false
         },
         yAxis: {
-          type: "value",
-          boundaryGap: [0, "100%"],
+          type: 'value',
+          boundaryGap: [0, '100%']
         },
         dataZoom: [
           {
-            type: "inside",
+            type: 'inside',
             start: 0,
-            end: 20,
+            end: 20
           },
           {
             start: 0,
-            end: 20,
-          },
+            end: 20
+          }
         ],
         series: [
           {
-            name: "Fake Data",
-            type: "line",
+            name: 'Fake Data',
+            type: 'line',
             smooth: true,
-            symbol: "none",
+            symbol: 'none',
             areaStyle: {},
-            data: data,
-          },
-        ],
-      };
-      let line = this.$echarts.init(this.$refs.time);
-      line.setOption(option);
-    },
-  },
-};
+            data: data
+          }
+        ]
+      }
+      let line = this.$echarts.init(this.$refs.time)
+      line.setOption(option)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -153,6 +154,7 @@ export default {
   margin: 10vh auto;
   display: flex;
   flex-wrap: wrap;
+
   .bar {
     width: 50%;
     height: 600px;

@@ -25,5 +25,5 @@ mybatis-plus:
 
 files:
   upload:
-    path: D:/files/
+    path: /Users/explorer/Pictures/
 #    path: /home/files/

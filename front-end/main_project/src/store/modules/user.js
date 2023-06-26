@@ -1,5 +1,6 @@
 import { login, getInfo } from '@/api/user'
 import { resetRouter } from '@/router'
+import router from '@/router'
 
 const getDefaultState = () => {
   return {
@@ -17,11 +18,11 @@ const mutations = {
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
   },
-  LOG_OUT: ()=> {
-    localStorage.removeItem("user")
-    localStorage.removeItem("menus")
+  LOG_OUT: () => {
+    localStorage.removeItem('user')
+    localStorage.removeItem('menus')
     resetRouter()
-  },
+  }
 }
 
 const actions = {
@@ -31,17 +32,15 @@ const actions = {
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
-        localStorage.setItem("user", JSON.stringify(data))  // 存储用户信息到浏览器
-        localStorage.setItem("menus", JSON.stringify(data.menus))  // 存储用户信息到浏览器
+        localStorage.setItem('user', JSON.stringify(data))
+        localStorage.setItem('menus', JSON.stringify(data.menus))
         resolve()
       }).catch(error => {
         reject(error)
       })
     })
   },
-
-  // get user info
-  getInfo({ commit, state },username) {
+  getInfo({ commit, state }, username) {
     return new Promise((resolve, reject) => {
       getInfo(username).then(response => {
         const { data } = response
@@ -59,8 +58,7 @@ const actions = {
         reject(error)
       })
     })
-  },
-  
+  }
 }
 
 export default {

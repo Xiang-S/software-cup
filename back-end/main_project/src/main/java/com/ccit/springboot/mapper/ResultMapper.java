@@ -2,7 +2,7 @@ package com.ccit.springboot.mapper;
 
 import com.ccit.springboot.controller.dto.MapDTO;
 import com.ccit.springboot.controller.dto.ResultDTO;
-import com.ccit.springboot.entity.Result;
+import com.ccit.springboot.entity.RecognizeResult;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 * @createDate 2023-06-11 09:04:14
 * @Entity com.ccit.springboot.entity.Result
 */
-public interface ResultMapper extends BaseMapper<Result> {
+public interface ResultMapper extends BaseMapper<RecognizeResult> {
     List<ResultDTO> selectAllProvince();
     List<Integer> selectNumByProvince(String province);
     List<MapDTO> selectSumByProvince();

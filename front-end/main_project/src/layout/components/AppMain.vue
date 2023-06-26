@@ -1,7 +1,7 @@
 <template>
   <section class="app-main">
     <transition name="fade-transform" mode="out-in">
-      <router-view :key="key" />
+      <router-view :key="key"/>
     </transition>
   </section>
 </template>
@@ -13,8 +13,8 @@ export default {
     key() {
       return this.$route.path
     }
-  },
-  
+  }
+
 }
 </script>
 
@@ -27,7 +27,8 @@ export default {
   overflow: scroll;
   background-color: #f0f2f5;
 }
-.fixed-header+.app-main {
+
+.fixed-header + .app-main {
   padding-top: 50px;
 }
 </style>

@@ -1,9 +1,10 @@
 import request from '@/utils/request'
 
-export function getList() {
+export function getList(params) {
   return request({
-    url: '/user',
-    method: 'get'
+    url: '/user/page',
+    method: 'get',
+    params
   })
 }
 
@@ -22,9 +23,24 @@ export function updateOne(data) {
   })
 }
 
-export function DeleteOne(id) {
+export function deleteOne(id) {
   return request({
     url: `/user/${id}`,
     method: 'delete'
   })
+}
+
+export function deleteBatch(data) {
+  return request({
+    url: `/user/del/batch`,
+    method: 'post',
+    data
+  })
+}
+
+export function exportURL() {
+  return `${process.env.VUE_APP_BASE_API}/user/export`
+}
+export function importURL() {
+  return `${process.env.VUE_APP_BASE_API}/user/import`
 }

@@ -144,8 +144,10 @@ public class UserController {
         // 在内存操作，写出到浏览器
         ExcelWriter writer = ExcelUtil.getWriter(true);
         //自定义标题别名
+        writer.addHeaderAlias("id", "Id");
         writer.addHeaderAlias("username", "用户名");
         writer.addHeaderAlias("password", "密码");
+        writer.addHeaderAlias("role", "角色");
         writer.addHeaderAlias("nickname", "昵称");
         writer.addHeaderAlias("email", "邮箱");
         writer.addHeaderAlias("phone", "电话");

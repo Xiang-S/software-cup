@@ -3,30 +3,6 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-/**
- * Note: sub-menu only appear when route children.length >= 1
- * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
- *
- * hidden: true                   if set true, item will not show in the sidebar(default is false)
- * alwaysShow: true               if set true, will always show the root menu
- *                                if not set alwaysShow, when item has more than one children route,
- *                                it will becomes picture mode, otherwise not show the root menu
- * redirect: noRedirect           if set noRedirect will no redirect in the breadcrumb
- * name:'router-name'             the name is used by <keep-alive> (must set!!!)
- * meta : {
-    roles: ['admin','editor']    control the page roles (you can set multiple roles)
-    title: 'title'               the name show in sidebar and breadcrumb (recommend set)
-    icon: 'svg-name'/'el-icon-x' the icon show in the sidebar
-    breadcrumb: false            if set false, the item will hidden in breadcrumb(default is true)
-    activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
-  }
- */
-
-/**
- * constantRoutes
- * a base page that does not have permission requirements
- * all roles can be accessed
- */
 export const constantRoutes = [
   {
     path: '/login',
@@ -39,7 +15,6 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true
   },
-
   // {
   //   path: '/',
   //   component: Layout,
@@ -126,30 +101,43 @@ export function resetRouter() {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // reset router
 }
-export const setRoutes = () => {
-  const storeMenus = localStorage.getItem("menus");
-  if (storeMenus) {
 
+export const setRoutes = () => {
+  const storeMenus = localStorage.getItem('menus')
+  if (storeMenus) {
     // 获取当前的路由对象名称数组
     const currentRouteNames = router.getRoutes().map(v => v.name)
     if (!currentRouteNames.includes('user')) {
       // 拼装动态路由
       const manageRoute = {
         path: '/',
-        name: "Layout",
+        name: 'Layout',
         component: (resolve) => require([`@/layout/index`], resolve),
         redirect: '/dashboard',
-        children: []
+        children: [
+          {
+            path: 'person',
+            component: () => import('@/views/person/index')
+          }
+        ]
       }
       const menus = JSON.parse(storeMenus)
       menus.forEach(item => {
-        if (item.path) {  // 当且仅当path不为空的时候才去设置路由
-          let itemMenu = { path: item.path.replace("/", ""), name: item.name, component: (resolve) => require([`@/views/${item.pagePath}.vue`], resolve) }
+        if (item.path) {
+          const itemMenu = {
+            path: item.path.replace('/', ''),
+            name: item.name,
+            component: (resolve) => require([`@/views/${item.pagePath}.vue`], resolve)
+          }
           manageRoute.children.push(itemMenu)
         } else if (item.children.length) {
           item.children.forEach(i => {
             if (i.path) {
-              let itemMenu = { path: i.path.replace("/", ""), name: i.name, component: (resolve) => require([`@/views/${i.pagePath}.vue`], resolve) }
+              const itemMenu = {
+                path: i.path.replace('/', ''),
+                name: i.name,
+                component: (resolve) => require([`@/views/${i.pagePath}.vue`], resolve)
+              }
               manageRoute.children.push(itemMenu)
             }
           })
@@ -158,11 +146,10 @@ export const setRoutes = () => {
       // 动态添加到现在的路由对象中去
       router.addRoute(manageRoute)
     }
-
   }
 }
 
-//页面刷新再set一次路由
+// 页面刷新再set一次路由
 setRoutes()
 
 export default router

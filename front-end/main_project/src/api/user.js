@@ -14,3 +14,15 @@ export function getInfo(username) {
     method: 'get'
   })
 }
+
+export function saveInfo(data) {
+  return request({
+    url: `/user`,
+    method: 'post',
+    data
+  })
+}
+
+export function uploadAvatarURL() {
+  return `${process.env.VUE_APP_BASE_API}/file/upload`
+}

@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface  CategoryMapper extends BaseMapper<Category> {
     List<String> selectPlants();
+
+    Integer selectByPlant(String plant);
 }

@@ -3,7 +3,7 @@ package com.ccit.springboot.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ccit.springboot.controller.dto.MapDTO;
 import com.ccit.springboot.controller.dto.ResultDTO;
-import com.ccit.springboot.entity.Result;
+import com.ccit.springboot.entity.RecognizeResult;
 import com.ccit.springboot.mapper.ResultMapper;
 import com.ccit.springboot.service.IResultService;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.List;
  * @createDate 2023-06-11 09:03:03
  */
 @Service
-public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result>
+public class ResultServiceImpl extends ServiceImpl<ResultMapper, RecognizeResult>
         implements IResultService {
     @Resource
     private ResultMapper resultMapper;
